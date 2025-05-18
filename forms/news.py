@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired
 
 
 class NewsForm(FlaskForm):
-    title = StringField('Заголовок', validators=[DataRequired()])
-    content = TextAreaField("Содержание")
-    is_private = BooleanField("Личное")
+    title = StringField('Заказ', validators=[DataRequired()])
+    content = TextAreaField("Примечание")
+    is_private = BooleanField("Не закончен")
     submit = SubmitField('Применить')

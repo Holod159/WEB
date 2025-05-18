@@ -14,7 +14,7 @@
   <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="#">Наше приложение</a>
     {% if current_user.is_authenticated %}
-    <a href="news" class="btn btn-secondary">Добавить новость</a>
+    <a href="news" class="btn btn-secondary">Новый заказ</a>
     {% endif %}
     {% if current_user.is_authenticated %}
     <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>
