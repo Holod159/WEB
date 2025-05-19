@@ -6,6 +6,7 @@ from data.news import News
 from data.users import User, LoginForm
 from forms.news import NewsForm
 from forms.user import RegisterForm
+from forms.pay import PayForm
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
 app = Flask(__name__)
@@ -173,6 +174,40 @@ def news_delete(id):
     else:
         abort(404)
     return redirect('/')
+
+
+@app.route('/news_pay/<int:id>', methods=['GET', 'POST'])
+@login_required
+def pay_news(id):
+    form = PayForm()
+    if request.method == "GET":
+        db_sess = db_session.create_session()
+        news = db_sess.query(News).filter(News.id == id,
+                                          News.user == current_user
+                                          ).first()
+        if news:
+            form.title.data = news.title
+            form.content.data = news.content
+            form.is_private.data = news.is_private
+        else:
+            abort(404)
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        news = db_sess.query(News).filter(News.id == id,
+                                          News.user == current_user
+                                          ).first()
+        if news:
+            news.title = form.title.data
+            news.content = form.content.data
+            news.is_private = form.is_private.data
+            db_sess.commit()
+            return redirect('/')
+        else:
+            abort(404)
+    return render_template('pay.html',
+                           title='Оплата заказа',
+                           form=form
+                           )
 
 
 if __name__ == '__main__':
