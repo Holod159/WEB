@@ -21,3 +21,4 @@ class News(SqlAlchemyBase):
     categories = orm.relationship("Category",
                                   secondary="association",
                                   backref="news")
+    progress = sqlalchemy.Column(sqlalchemy.String, default=True)
