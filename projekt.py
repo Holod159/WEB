@@ -202,13 +202,18 @@ def pay_news(id):
             news.title = form.title.data
             news.content = form.content.data
             db_sess.commit()
-            return redirect('/')
+            return redirect('/payp')
         else:
             abort(404)
     return render_template('pay.html',
                            title='Оплата заказа',
                            form=form
                            )
+
+
+@app.route('/payp')
+def popup():
+    return render_template('payp.html')
 
 
 if __name__ == '__main__':
