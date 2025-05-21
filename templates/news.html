@@ -22,6 +22,14 @@
     </p>
     {% endfor %}
     </p>
+    <p>
+        {{ form.progress.label }} {{ form.progress.data }} {{ '%' }}<br>
+        {% for error in form.progress.errors %}
+'    <p content="alert alert-danger" role="alert">
+'        {{ error }}
+    </p>
+    {% endfor %}
+    </p>
     <p>{{ form.is_private() }} {{ form.is_private.label }}</p>
     <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
     {{message}}

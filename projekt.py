@@ -119,7 +119,7 @@ def add_news():
         news.title = form.title.data
         news.content = form.content.data
         news.is_private = form.is_private.data
-        news.progress = 0
+        news.progress = 1
         current_user.news.append(news)
         db_sess.merge(current_user)
         db_sess.commit()
@@ -153,7 +153,6 @@ def edit_news(id):
             news.title = form.title.data
             news.content = form.content.data
             news.is_private = form.is_private.data
-            news.progress = form.progress.data + 1
             db_sess.commit()
             return redirect('/')
         else:
@@ -191,7 +190,6 @@ def pay_news(id):
         if news:
             form.title.data = news.title
             form.content.data = news.content
-            form.is_private.data = news.is_private
             form.progress.data = news.progress
         else:
             abort(404)
@@ -203,8 +201,6 @@ def pay_news(id):
         if news:
             news.title = form.title.data
             news.content = form.content.data
-            news.is_private = True
-            news.progress = form.progress.data + 1
             db_sess.commit()
             return redirect('/')
         else:

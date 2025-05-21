@@ -7,5 +7,5 @@ from wtforms.validators import DataRequired
 class PayForm(FlaskForm):
     title = StringField('Номер карты', validators=[DataRequired()])
     content = TextAreaField("Пин код")
-    is_private = BooleanField("")
+    progress = StringField('Прогресс')
     submit = SubmitField('Оплатить')

@@ -9,3 +9,4 @@ class NewsForm(FlaskForm):
     content = TextAreaField("Примечание")
     is_private = BooleanField("Оплачен")
     submit = SubmitField('Применить')
+    progress = StringField('Прогресс')
